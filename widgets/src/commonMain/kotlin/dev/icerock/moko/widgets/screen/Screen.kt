@@ -14,6 +14,8 @@ expect abstract class Screen<Arg : Args>() {
 
     fun <T : Any> createEventsDispatcher(): EventsDispatcher<T>
 
+    open fun onCreated()
+
     open val androidStatusBarColor: Color?
     open val isLightStatusBar: Boolean?
 }

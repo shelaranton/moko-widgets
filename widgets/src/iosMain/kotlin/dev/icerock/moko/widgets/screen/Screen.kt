@@ -38,6 +38,8 @@ actual abstract class Screen<Arg : Args> {
         return EventsDispatcher()
     }
 
+    actual open fun onCreated() { }
+
     protected abstract fun createViewController(isLightStatusBar: Boolean?): UIViewController
 
     private var _viewController: WeakReference<UIViewController>? = null
@@ -50,6 +52,9 @@ actual abstract class Screen<Arg : Args> {
                 setAssociatedObject(it, this)
             }
             _viewController = WeakReference(vc)
+
+            onCreated()
+
             return vc
         }
 

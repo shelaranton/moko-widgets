@@ -51,6 +51,8 @@ actual abstract class Screen<Arg : Args> : Fragment() {
         return EventsDispatcher(mainExecutor)
     }
 
+    actual open fun onCreated() { }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -69,6 +71,12 @@ actual abstract class Screen<Arg : Args> : Fragment() {
 
         val lightStatusBar = resolveIsStatusBarLight()
         setLightStatusBar(lightStatusBar)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        onCreated()
     }
 
     private fun resolveStatusBarColor(): Int {
